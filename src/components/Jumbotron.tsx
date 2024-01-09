@@ -5,7 +5,7 @@ export const Jumbotron = () => {
       <div className="hidden lg:flex absolute top-0 left-0 w-36 h-36 blur-[140px] bg-gradient-to-r from-red-400 to-red-500 rounded-3xl z-[-1]" />
       <div className="hidden lg:flex absolute top-96 right-0 w-48 h-48 blur-[180px] bg-gradient-to-r from-red-400 to-red-500 rounded-3xl z-[-1]" />
 
-      <a href="/" target="_blank" className="hidden mb-4 lg:flex bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white">
+      <a href="https://discord.gg/7KmtuNKm49" target="_blank" className="hidden mb-4 lg:flex bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white">
         <span className="absolute inset-0 overflow-hidden rounded-full">
           <span className="absolute inset-0 roudned-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(255,0,0,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </span>
@@ -30,7 +30,7 @@ export const Jumbotron = () => {
         Start winning today with our secure and advanced gaming software.
       </p>
 
-      <a className="rounded-full bg-gray-200 text-black/90 px-12 py-3 font-semibold mt-8 hover:bg-red-100 duration-200 transition-all">
+      <a href="/products" className="rounded-full bg-gray-200 text-black/90 px-12 py-3 font-semibold mt-8 hover:bg-red-100 duration-200 transition-all">
         Buy Now
       </a>
     </div>
