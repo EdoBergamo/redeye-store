@@ -32,7 +32,7 @@ const Products = () => {
         const response = await fetch('https://dev.sellix.io/v1/groups', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ShcYRDhnV2TEBI5OoNEUtdGJsMcUe39PV9VENi1fj0cyGUDYn3EWLHvuZ7s4lD7V`,
+            'Authorization': `Bearer ${process.env.API_KEY}`,
             'Content-Type': 'application/json'
           }
         });
