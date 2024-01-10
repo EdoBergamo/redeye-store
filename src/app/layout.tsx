@@ -18,6 +18,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script async src="https://embed.sellpass.io/embed.js"></script>
+        <script async src="https://cdn.sellix.io/static/js/embed.js"></script>
+        <link href="https://cdn.sellix.io/static/css/embed.css" rel="stylesheet" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
