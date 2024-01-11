@@ -4,7 +4,7 @@ import DiscordProvider from "next-auth/providers/discord";
 import User from "@/models/User";
 import connect from "@/utils/db";
 
-export const authOptions: any = {
+const authOptions: any = {
   providers: [
     DiscordProvider({
       clientId: process.env.DISCORD_ID ?? "",
