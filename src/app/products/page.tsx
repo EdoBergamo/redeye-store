@@ -1,6 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/Navbar";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -25,10 +26,12 @@ interface ProductsProps {
 
 const Products = () => {
   const [data, setData] = useState<ProductsProps[]>([]);
+  const [isLoading, setIsLoading] = useState<Boolean>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch('https://dev.sellix.io/v1/groups', {
           method: 'GET',
           headers: {
@@ -44,6 +47,8 @@ const Products = () => {
         setData(responseData.data.groups);
       } catch (error) {
         console.error(error)
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -55,11 +60,16 @@ const Products = () => {
       <Navbar />
       <section className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
+        <div className="hidden lg:flex absolute top-2/4 right-0 w-36 h-36 blur-[140px] bg-gradient-to-r from-red-400 to-red-500 rounded-3xl z-[-1]" />
+        <div className="hidden lg:flex absolute top-3/4 left-0 w-48 h-48 blur-[180px] bg-gradient-to-r from-red-400 to-red-500 rounded-3xl z-[-1]" />
 
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          <div className="hidden lg:flex absolute top-2/4 right-0 w-36 h-36 blur-[140px] bg-gradient-to-r from-red-400 to-red-500 rounded-3xl z-[-1]" />
-          <div className="hidden lg:flex absolute top-3/4 left-0 w-48 h-48 blur-[180px] bg-gradient-to-r from-red-400 to-red-500 rounded-3xl z-[-1]" />
-
+        {isLoading ? (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+            <Loader2 className="inline-block w-12 h-12 mb-2 animate-spin" />
+            <p className="ml-2.5">Loading...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {data.length > 0 && data.map(group => (
             group.products_bound[0].stock > 0 ? (
               <div key={group.id} className="game-card bg-[#0f1013] border border-red-600 border-solid h-72 m-4 w-72 overflow-hidden rounded-2xl">
@@ -91,6 +101,7 @@ const Products = () => {
             ) : null
           ))}
         </div>
+        )}
       </section>
     </main>
   )
