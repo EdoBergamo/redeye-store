@@ -1,3 +1,4 @@
+import { Features } from '@/components/Features'
 import { Jumbotron } from '@/components/Jumbotron'
 import { Navbar } from '@/components/Navbar'
 
@@ -6,6 +7,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Jumbotron />
+      <Features />
     </main>
   )
 }

@@ -18,7 +18,7 @@ export const Navbar = () => {
     <div className="sticky z-[2] top-0 bg-black/10 p-5 border-b backdrop-blur-md border-gray-400/20">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <Image src="/logo.png" width='70' height='70' alt="RedEye Logo" />
+          <Image src="/logo.png" width='50' height='50' alt="RedEye Logo" />
         </div>
 
         <div className="hidden md:flex space-x-10">
