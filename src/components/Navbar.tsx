@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { signOut, useSession } from 'next-auth/react';
 
 export const Navbar = () => {
   const currentRoute = usePathname();
+  const { data: session }: any = useSession()
 
   const menu = [
     { id: 1, href: '/', text: 'Home' },
@@ -28,9 +30,15 @@ export const Navbar = () => {
         </div>
 
         <div>
-          <a href="/dashboard" className="bg-white text-black/90 border border-transparent font-semibold px-8 py-1 rounded-xl hover:bg-zinc-300 transition-all duration-300">
-            Login
-          </a>
+          {!session ? (
+            <a href="/login" className="bg-white text-black/90 border border-transparent font-semibold px-8 py-1 rounded-xl hover:bg-zinc-300 transition-all duration-300">
+              Login
+            </a>
+          ) : (
+            <button onClick={() => {signOut()}} className="bg-white text-black/90 border border-transparent font-semibold px-8 py-1 rounded-xl hover:bg-zinc-300 transition-all duration-300">
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </div>
