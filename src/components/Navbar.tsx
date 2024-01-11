@@ -13,7 +13,7 @@ export const Navbar = () => {
     { id: 2, href: '/products', text: 'Products' },
     { id: 3, href: '/status', text: 'Status' },
     { id: 4, href: '/reviews', text: 'Reviews' },
-    { id: 5, href: '/contact', text: 'Contact' },
+    { id: 5, href: 'https://discord.gg/7KmtuNKm49', target: '_blank', text: 'Contact' },
   ];
 
   return (
@@ -25,7 +25,7 @@ export const Navbar = () => {
 
         <div className="hidden md:flex space-x-10">
           {menu.map((item) => (
-            <a key={item.id} href={item.href} className={`font-medium text-gray-300 hover:text-red-500 transition-all duration-200 ${currentRoute === item.href ? 'text-red-500' : ""}`}>{item.text}</a>
+            <a key={item.id} href={item.href} target={item.target} className={`font-medium text-gray-300 hover:text-red-500 transition-all duration-200 ${currentRoute === item.href ? 'text-red-500' : ""}`}>{item.text}</a>
           ))}
         </div>
 

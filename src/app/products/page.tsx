@@ -1,5 +1,6 @@
 "use client";
 
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
@@ -103,6 +104,8 @@ const Products = () => {
         </div>
         )}
       </section>
+
+      <Footer />
     </main>
   )
 }
