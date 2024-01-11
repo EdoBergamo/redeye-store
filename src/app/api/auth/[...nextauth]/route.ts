@@ -1,17 +1,19 @@
 import NextAuth from "next-auth";
 import { Account, User as AuthUser } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import User from "@/models/User";
 import connect from "@/utils/db";
 
-const authOptions: any = {
+const authOptions: NextAuthOptions = {
   providers: [
     DiscordProvider({
-      clientId: process.env.DISCORD_ID ?? "",
-      clientSecret: process.env.DISCORD_SECRET ?? "",
+      clientId: process.env.DISCORD_ID!,
+      clientSecret: process.env.DISCORD_SECRET!,
     }),
   ],
   callbacks: {
+    // @ts-expect-error
     async signIn({ user, account }: { user: AuthUser; account: Account }) {
       if (account?.provider == "discord") {
         await connect();
@@ -35,5 +37,5 @@ const authOptions: any = {
   }
 }
 
-export const handler = NextAuth(authOptions);
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
