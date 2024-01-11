@@ -30,7 +30,7 @@ export const Jumbotron = () => {
         Start winning today with our secure and advanced gaming software.
       </p>
 
-      <a href="/products" className="rounded-full bg-gray-200 text-black/90 px-12 py-3 font-semibold mt-8 hover:bg-red-100 duration-200 transition-all">
+      <a href="/products" className="rounded-xl bg-gray-200 text-black/90 px-12 py-3 font-semibold mt-8 hover:bg-red-100 duration-200 transition-all">
         Buy Now
       </a>
     </div>

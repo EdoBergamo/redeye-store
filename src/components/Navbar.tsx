@@ -22,13 +22,13 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden md:flex space-x-10">
-          {menu.map((item, i) => (
+          {menu.map((item) => (
             <a key={item.id} href={item.href} className={`font-medium text-gray-300 hover:text-red-500 transition-all duration-200 ${currentRoute === item.href ? 'text-red-500' : ""}`}>{item.text}</a>
           ))}
         </div>
 
         <div>
-          <a href="/dashboard" className="bg-white text-black/90 border border-transparent font-semibold px-8 py-1 rounded-full hover:bg-zinc-300 transition-all duration-300">
+          <a href="/dashboard" className="bg-white text-black/90 border border-transparent font-semibold px-8 py-1 rounded-xl hover:bg-zinc-300 transition-all duration-300">
             Login
           </a>
         </div>
