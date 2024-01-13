@@ -1,10 +1,41 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
+"use client";
+
+import { ProductsProps } from "@/app/products/page";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+
+import { useEffect, useState } from "react";
 
 export function VerifyForm() {
+  const [data, setData] = useState<ProductsProps[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://dev.sellix.io/v1/groups', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok)
+          throw new Error('Network Error')
+
+        const responseData = await response.json();
+        setData(responseData.data.groups);
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div className="space-y-8">
       <div className="space-y-2">
@@ -43,15 +74,19 @@ export function VerifyForm() {
           <Textarea className="min-h-[100px]" id="reason" placeholder="Enter your reason" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="products">Which product(s) are you interested in?</Label>
+          <Label htmlFor="products">
+            Which {data.length > 1 ? 'products ' : 'product '} are you interested in?
+          </Label>
           <Select>
             <SelectTrigger id="products">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent position="popper">
-              <SelectItem value="rainbow-six">Rainbow Six Siege</SelectItem>
-              <SelectItem value="rust">Rust</SelectItem>
-              <SelectItem value="apex-legends">Apex Legends</SelectItem>
+              {data.length > 0 && data.map(group => (
+                <SelectItem key={group.id} value={`${group.id}`}>
+                  {group.title}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
