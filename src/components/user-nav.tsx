@@ -10,6 +10,7 @@ import {
   DropdownMenu,
 } from "@/components/ui/dropdown-menu";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 interface UserNavProps {
@@ -19,6 +20,7 @@ interface UserNavProps {
 export function UserNav({ logout }: UserNavProps) {
   // Using the useSession hook from next-auth to get user session data.
   const { data: session }: any = useSession();
+  const router = useRouter();
 
   // Function to generate a random color for AvatarFallback background.
   const getRandomColor = () => {
@@ -60,10 +62,10 @@ export function UserNav({ logout }: UserNavProps) {
           {/* Displaying the user's name in the dropdown. */}
           <DropdownMenuLabel className="text-white">{session?.user.name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-gray-300" disabled>
+          <DropdownMenuItem className="text-gray-300 cursor-pointer" onClick={() => router.push('/dashboard')}>
             Dashboard
           </DropdownMenuItem>
-          <DropdownMenuItem className="text-white cursor-pointer" onClick={() => logout()}>
+          <DropdownMenuItem className="text-gray-300 cursor-pointer" onClick={() => logout()}>
             Logout
           </DropdownMenuItem>
         </DropdownMenuContent>

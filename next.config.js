@@ -21,6 +21,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'lethalcheats.net',
         pathname: '**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.discordapp.com',
+        pathname: '**'
       }
     ]
   }

@@ -3,18 +3,16 @@
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { FaDiscord } from "react-icons/fa6";
 
 const Login = () => {
   const session = useSession();
   const router = useRouter();
 
-  useEffect(() => {
-    if (session?.status === 'authenticated') {
-      router.push('/');
-    }
-  }, [session, router])
+  if (session?.status === 'authenticated') {
+    router.push('/');
+    return null;
+  }
 
   return (
     <div className="relative flex flex-col items-center h-screen justify-center">
