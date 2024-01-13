@@ -17,9 +17,9 @@ const Sidebar = () => {
 
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
-    { name: "Redeem", href: "#", icon: GiftIcon },
-    { name: "Verification", href: "#", icon: IdCardIcon },
-    { name: "HWID Reset", href: "#", icon: IoHardwareChip },
+    { name: "Redeem", href: "/dashboard/redeem", icon: GiftIcon },
+    { name: "Verification", href: "/dashboard/verification", icon: IdCardIcon },
+    { name: "HWID Reset", href: "/dashboard/hwid-reset", icon: IoHardwareChip },
   ];
 
   return (
