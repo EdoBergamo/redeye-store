@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-interface ProductsProps {
+export interface ProductsProps {
   id: number
   uniqid: string
   shop_id: string
