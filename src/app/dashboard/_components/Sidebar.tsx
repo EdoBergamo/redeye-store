@@ -8,16 +8,18 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { IdCardIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 const Sidebar = () => {
+  const currentRoute = usePathname();
   const session = useSession();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const navigation = [
-    { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: true },
-    { name: "Redeem", href: "#", icon: GiftIcon, current: false },
-    { name: "Verification", href: "#", icon: IdCardIcon, current: false },
-    { name: "HWID Reset", href: "#", icon: IoHardwareChip, current: false },
+    { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
+    { name: "Redeem", href: "#", icon: GiftIcon },
+    { name: "Verification", href: "#", icon: IdCardIcon },
+    { name: "HWID Reset", href: "#", icon: IoHardwareChip },
   ];
 
   return (
@@ -94,7 +96,7 @@ const Sidebar = () => {
                               <a
                                 href={item.href}
                                 className={cn(
-                                  item.current
+                                  currentRoute === item.href 
                                     ? "bg-gray-800 text-white"
                                     : "text-gray-400 hover:text-white hover:bg-gray-800",
                                   "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
@@ -140,7 +142,7 @@ const Sidebar = () => {
                       <a
                         href={item.href}
                         className={cn(
-                          item.current
+                          currentRoute === item.href
                             ? "bg-gray-800 text-white"
                             : "text-gray-400 hover:text-white hover:bg-gray-800",
                           "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
