@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Each } from "@/lib/Eac";
 
 import { useEffect, useState } from "react";
 
@@ -82,11 +83,13 @@ export function VerifyForm() {
               <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent position="popper">
-              {data.length > 0 && data.map(group => (
-                <SelectItem key={group.id} value={`${group.id}`}>
-                  {group.title}
-                </SelectItem>
-              ))}
+              {data.length > 0 &&
+                <Each of={data} render={(group: any) =>
+                  <SelectItem value={`${group.id}`}>
+                    {group.title}
+                  </SelectItem>
+                } />
+              }
             </SelectContent>
           </Select>
         </div>

@@ -1,4 +1,3 @@
-
 export const Jumbotron = () => {
   return (
     <div className="relative mt-20 xl:mt-40 px-10 flex flex-col items-center justify-center">

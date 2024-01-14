@@ -9,6 +9,7 @@ import Image from "next/image";
 import { IdCardIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { Each } from "@/lib/Eac";
 
 const Sidebar = () => {
   const currentRoute = usePathname();
@@ -91,25 +92,21 @@ const Sidebar = () => {
                     <ul role="list" className="flex flex-1 flex-col gap-y-7">
                       <li>
                         <ul role="list" className="-mx-2 space-y-1">
-                          {navigation.map((item) => (
-                            <li key={item.name}>
+                          <Each of={navigation} render={(item: any) =>
+                            <li>
                               <a
                                 href={item.href}
                                 className={cn(
-                                  currentRoute === item.href 
+                                  currentRoute === item.href
                                     ? "bg-gray-800 text-white"
                                     : "text-gray-400 hover:text-white hover:bg-gray-800",
                                   "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                 )}
                               >
-                                <item.icon
-                                  className="h-6 w-6 shrink-0"
-                                  aria-hidden="true"
-                                />
                                 {item.name}
                               </a>
                             </li>
-                          ))}
+                          } />
                         </ul>
                       </li>
                     </ul>
@@ -137,8 +134,8 @@ const Sidebar = () => {
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" className="-mx-2 space-y-1">
-                  {navigation.map((item) => (
-                    <li key={item.name}>
+                  <Each of={navigation} render={(item: any) =>
+                    <li>
                       <a
                         href={item.href}
                         className={cn(
@@ -155,7 +152,7 @@ const Sidebar = () => {
                         {item.name}
                       </a>
                     </li>
-                  ))}
+                  } />
                 </ul>
               </li>
               <li className="-mx-6 mt-auto">

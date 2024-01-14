@@ -2,6 +2,7 @@
 
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { Each } from "@/lib/Eac";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -71,9 +72,8 @@ const Products = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {data.length > 0 && data.map(group => (
-            group.products_bound[0].stock > 0 ? (
-              <div key={group.id} className="game-card bg-[#0f1013] border border-red-600 border-solid h-72 m-4 w-72 overflow-hidden rounded-2xl">
+            <Each of={data} render={(group: any) =>
+              <div className="game-card bg-[#0f1013] border border-red-600 border-solid h-72 m-4 w-72 overflow-hidden rounded-2xl">
                 <div className="card-img rounded-2xl overflow-hidden items-center flex bg-[#14161a] justify-center max-h-40 min-w-[calc(101%-1px]">
                   <Image
                     src={`https://imagedelivery.net/95QNzrEeP7RU5l5WdbyrKw/${group.cloudflare_image_id}/shopitem`}
@@ -99,9 +99,8 @@ const Products = () => {
                   </div>
                 </div>
               </div>
-            ) : null
-          ))}
-        </div>
+            } />
+          </div>
         )}
       </section>
 

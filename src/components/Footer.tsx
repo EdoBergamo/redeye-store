@@ -1,3 +1,4 @@
+import { Each } from "@/lib/Eac";
 import Image from "next/image";
 
 export const Footer = () => {
@@ -26,11 +27,11 @@ export const Footer = () => {
           </a>
 
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0">
-            {data.map(item => (
-              <li key={item.id}>
+            <Each of={data} render={(item: any) => 
+              <li>
                 <a href={`${item.endpoint}`} target={item.target} className="hover:underline me-4 md:me-6">{item.name}</a>
               </li>
-            ))}
+            } />
           </ul>
         </div>
 

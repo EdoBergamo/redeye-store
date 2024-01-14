@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { UserNav } from './user-nav';
+import { Each } from '@/lib/Eac';
 
 export const Navbar = () => {
   const currentRoute = usePathname();
@@ -25,9 +26,9 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden md:flex space-x-10">
-          {menu.map((item) => (
-            <a key={item.id} href={item.href} target={item.target} className={`font-medium text-gray-300 hover:text-red-500 transition-all duration-200 ${currentRoute === item.href ? 'text-red-500' : ""}`}>{item.text}</a>
-          ))}
+          <Each of={menu} render={(item: any, index: any) => 
+            <a href={item.href} target={item.target} className={`font-medium text-gray-300 hover:text-red-500 transition-all duration-200 ${currentRoute === item.href && 'text-red-500'}`}>{item.text}</a>
+          } />
         </div>
 
         <div>
@@ -36,9 +37,6 @@ export const Navbar = () => {
               Login
             </a>
           ) : (
-            // <button onClick={() => {signOut()}} className="bg-white text-black/90 border border-transparent font-semibold px-8 py-1 rounded-xl hover:bg-zinc-300 transition-all duration-300">
-            //   Logout
-            // </button>
             <UserNav logout={signOut} />
           )}
         </div>

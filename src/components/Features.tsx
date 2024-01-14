@@ -3,6 +3,7 @@ import { BiSupport } from "react-icons/bi";
 import { GrStatusGood } from "react-icons/gr";
 import { MdOutlineSecurity } from "react-icons/md";
 import { IoHardwareChip, IoGameController } from "react-icons/io5";
+import { Each } from "@/lib/Eac";
 
 export const Features = () => {
   const data = [
@@ -27,8 +28,8 @@ export const Features = () => {
 
       <div className="mt-16 flex justify-center items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {data.map(item => (
-            <div key={item.id} className="w-[390px] bg-[#0D0D0D] rounded-xl p-4 sm:p-6">
+          <Each of={data} render={(item: any) =>
+            <div className="w-[390px] bg-[#0D0D0D] rounded-xl p-4 sm:p-6">
               <div className="bg-[#1B1B1B]  w-6 h-6 sm:h-10 sm:w-10 rounded-full flex items-center justify-center text-white text-xs">
                 {<item.icon className="h-6 w-6 text-red-500" />}
               </div>
@@ -38,7 +39,7 @@ export const Features = () => {
                 <p className="mt-2 text-zinc-500 font-medium">{item.description}</p>
               </div>
             </div>
-          ))}
+          } />
         </div>
       </div>
     </section>
